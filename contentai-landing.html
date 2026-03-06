@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ContentAI — Marketing com IA para agências e negócios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#07090f;
+  --bg2:#0c1018;
+  --bg3:#111620;
+  --border:#1c2438;
+  --border2:#242e42;
+  --accent:#3b82f6;
+  --accent2:#6366f1;
+  --green:#10b981;
+  --yellow:#f59e0b;
+  --text:#e8edf5;
+  --dim:#64748b;
+  --mid:#94a3b8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* ── Noise overlay ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.4
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 40px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(7,9,15,.8);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(28,36,56,.6)
+}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.3px}
+.nav-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 4px 16px rgba(59,130,246,.35)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:13px;color:var(--mid);font-weight:500;transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#fff;padding:9px 22px;border-radius:8px;font-size:13px;font-weight:700;transition:all .15s;box-shadow:0 4px 14px rgba(59,130,246,.3)}
+.nav-cta:hover{background:#2563eb;transform:translateY(-1px);box-shadow:0 6px 20px rgba(59,130,246,.4)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:120px 24px 80px;text-align:center;position:relative;
+}
+.hero-glow{
+  position:absolute;top:10%;left:50%;transform:translateX(-50%);
+  width:700px;height:500px;
+  background:radial-gradient(ellipse at center,rgba(59,130,246,.12) 0%,rgba(99,102,241,.06) 40%,transparent 70%);
+  pointer-events:none
+}
+.hero-glow2{
+  position:absolute;bottom:0;left:20%;
+  width:400px;height:300px;
+  background:radial-gradient(ellipse,rgba(16,185,129,.07),transparent 70%);
+  pointer-events:none
+}
+.badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);
+  border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:#93c5fd;
+  margin-bottom:28px;letter-spacing:.3px
+}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#3b82f6;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+
+h1{
+  font-family:'Syne',sans-serif;font-size:clamp(42px,6vw,78px);
+  font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:24px;
+  max-width:860px
+}
+h1 .grad{
+  background:linear-gradient(135deg,#60a5fa 0%,#818cf8 50%,#a78bfa 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+.hero-sub{font-size:18px;color:var(--mid);max-width:540px;line-height:1.7;margin-bottom:44px;font-weight:300}
+.hero-sub strong{color:var(--text);font-weight:500}
+
+.cta-group{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:56px}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;padding:15px 32px;border-radius:10px;font-size:15px;font-weight:700;
+  box-shadow:0 8px 28px rgba(59,130,246,.35);transition:all .2s;display:inline-flex;align-items:center;gap:8px
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(59,130,246,.45)}
+.btn-ghost{
+  background:rgba(255,255,255,.04);border:1px solid var(--border2);
+  color:var(--mid);padding:15px 28px;border-radius:10px;font-size:15px;font-weight:500;
+  transition:all .2s
+}
+.btn-ghost:hover{background:rgba(255,255,255,.08);color:var(--text);border-color:rgba(255,255,255,.15)}
+
+.hero-proof{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center}
+.hero-proof-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--dim)}
+.hero-proof-item svg{flex-shrink:0}
+
+/* ── App Preview ── */
+.app-preview{
+  max-width:1000px;margin:0 auto;padding:0 24px 100px;position:relative
+}
+.app-frame{
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  box-shadow:0 40px 120px rgba(0,0,0,.6),0 0 0 1px rgba(59,130,246,.08);
+  position:relative
+}
+.app-bar{background:var(--bg3);padding:14px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.app-dot{width:10px;height:10px;border-radius:50%}
+.app-content{padding:24px;display:grid;grid-template-columns:220px 1fr;gap:16px;min-height:340px}
+.app-sidebar{display:flex;flex-direction:column;gap:8px}
+.app-nav-item{padding:10px 14px;border-radius:8px;font-size:13px;color:var(--mid);display:flex;align-items:center;gap:9px}
+.app-nav-item.active{background:rgba(59,130,246,.1);color:#60a5fa;font-weight:600}
+.app-main{display:flex;flex-direction:column;gap:14px}
+.app-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px}
+.app-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.app-card-title{font-size:12px;font-weight:700;color:var(--mid);letter-spacing:.5px;text-transform:uppercase}
+.app-tag{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700}
+.tag-blue{background:rgba(59,130,246,.12);color:#60a5fa}
+.tag-green{background:rgba(16,185,129,.12);color:#34d399}
+.tag-yellow{background:rgba(245,158,11,.1);color:#fbbf24}
+.app-post-list{display:flex;flex-direction:column;gap:8px}
+.app-post{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg);border-radius:7px;font-size:12px}
+.app-post-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.app-post-name{color:var(--mid);flex:1}
+.app-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.app-metric{background:var(--bg);border-radius:8px;padding:12px;text-align:center}
+.app-metric-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text)}
+.app-metric-label{font-size:10px;color:var(--dim);margin-top:2px}
+
+/* ── SECTION SHARED ── */
+section{position:relative;z-index:1}
+.section-inner{max-width:1100px;margin:0 auto;padding:100px 24px}
+.section-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.section-sub{font-size:16px;color:var(--mid);max-width:520px;line-height:1.7;font-weight:300}
+
+/* ── PAIN ── */
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:52px}
+.pain-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;
+  position:relative;overflow:hidden;transition:border-color .2s
+}
+.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(239,68,68,.4),transparent)}
+.pain-card:hover{border-color:rgba(239,68,68,.2)}
+.pain-icon{font-size:24px;margin-bottom:14px}
+.pain-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
+.pain-desc{font-size:13px;color:var(--mid);line-height:1.7}
+
+/* ── FEATURES ── */
+.features-wrap{margin-top:64px;display:flex;flex-direction:column;gap:80px}
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.feature-row.reverse{direction:rtl}
+.feature-row.reverse>*{direction:ltr}
+.feature-visual{
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  padding:32px;min-height:280px;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden
+}
+.feature-visual::after{
+  content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;
+  border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.08),transparent 70%)
+}
+.feature-tag{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.feature-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1.2;margin-bottom:14px}
+.feature-desc{font-size:15px;color:var(--mid);line-height:1.7;margin-bottom:24px;font-weight:300}
+.feature-list{display:flex;flex-direction:column;gap:9px}
+.feature-list-item{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--mid)}
+.feature-list-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* DNA visual */
+.dna-visual{display:flex;flex-direction:column;gap:10px}
+.dna-field{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.dna-label{font-size:10px;font-weight:700;color:var(--dim);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.dna-value{font-size:13px;color:var(--text)}
+.dna-ai-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:6px;padding:4px 10px;font-size:11px;color:#a5b4fc;font-weight:600;margin-top:10px}
+
+/* Kanban visual */
+.kanban-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kanban-col-title{font-size:10px;font-weight:700;color:var(--dim);letter-spacing:.5px;margin-bottom:8px;text-transform:uppercase}
+.kanban-item{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px;margin-bottom:6px;font-size:12px}
+.kanban-item-type{font-size:10px;margin-bottom:3px}
+.kanban-item-name{color:var(--mid)}
+
+/* Chat visual */
+.chat-msgs{display:flex;flex-direction:column;gap:10px}
+.chat-msg{padding:11px 14px;border-radius:10px;font-size:13px;max-width:85%;line-height:1.6}
+.chat-msg.user{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.15);color:#93c5fd;align-self:flex-end}
+.chat-msg.ai{background:var(--bg3);border:1px solid var(--border);color:var(--mid);align-self:flex-start}
+.chat-msg.ai strong{color:var(--text)}
+
+/* ── HOW ── */
+.how-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:56px;position:relative}
+.steps::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+.step{text-align:center;padding:0 24px;position:relative}
+.step-num{
+  width:56px;height:56px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(99,102,241,.1));
+  border:1px solid rgba(59,130,246,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#60a5fa;
+  margin:0 auto 20px;position:relative;z-index:1
+}
+.step-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
+.step-desc{font-size:13px;color:var(--mid);line-height:1.7}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:52px}
+.testi-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:26px;
+  transition:border-color .2s,transform .2s
+}
+.testi-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.testi-stars{color:#f59e0b;font-size:13px;margin-bottom:14px;letter-spacing:2px}
+.testi-text{font-size:14px;color:var(--mid);line-height:1.8;margin-bottom:20px;font-style:italic;font-weight:300}
+.testi-text strong{color:var(--text);font-style:normal;font-weight:500}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.testi-name{font-size:13px;font-weight:700}
+.testi-role{font-size:11px;color:var(--dim)}
+
+/* ── PRICING ── */
+.pricing-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.billing-toggle{display:flex;align-items:center;gap:12px;margin-top:32px;justify-content:center}
+.toggle-wrap{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:3px}
+.toggle-opt{padding:7px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--dim)}
+.toggle-opt.active{background:var(--accent);color:#fff;box-shadow:0 2px 10px rgba(59,130,246,.3)}
+.save-badge{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:#34d399;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.plan-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:28px;
+  position:relative;transition:transform .2s,border-color .2s
+}
+.plan-card:hover{transform:translateY(-4px)}
+.plan-card.popular{
+  border-color:rgba(59,130,246,.4);
+  background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(99,102,241,.04))
+}
+.popular-badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-size:11px;font-weight:800;padding:4px 16px;border-radius:20px;
+  white-space:nowrap;letter-spacing:.3px
+}
+.plan-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--mid);letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px}
+.plan-price-wrap{margin-bottom:24px}
+.plan-price{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;letter-spacing:-2px;line-height:1}
+.plan-price sup{font-size:18px;vertical-align:top;margin-top:6px;font-weight:600}
+.plan-period{font-size:12px;color:var(--dim);margin-top:6px}
+.plan-desc{font-size:13px;color:var(--mid);margin-bottom:24px;line-height:1.6}
+.plan-features{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.plan-feat{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--mid)}
+.plan-feat::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.plan-btn{
+  display:block;text-align:center;padding:12px;border-radius:9px;font-size:14px;font-weight:700;
+  transition:all .15s;border:1px solid var(--border2);color:var(--mid);
+  background:rgba(255,255,255,.03)
+}
+.plan-btn:hover{background:rgba(255,255,255,.07);color:var(--text)}
+.plan-btn.primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;border:none;box-shadow:0 4px 16px rgba(59,130,246,.3)
+}
+.plan-btn.primary:hover{box-shadow:0 8px 24px rgba(59,130,246,.4);transform:translateY(-1px)}
+.plan-trial{font-size:11px;color:var(--dim);text-align:center;margin-top:10px}
+
+/* ── FAQ ── */
+.faq-list{margin-top:52px;display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{
+  padding:20px 24px;display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;font-size:15px;font-weight:500;transition:background .15s
+}
+.faq-q:hover{background:rgba(255,255,255,.02)}
+.faq-arrow{color:var(--dim);transition:transform .2s;flex-shrink:0;margin-left:16px}
+.faq-a{padding:0 24px;max-height:0;overflow:hidden;transition:all .3s;font-size:14px;color:var(--mid);line-height:1.8}
+.faq-item.open .faq-a{max-height:200px;padding:0 24px 20px}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+
+/* ── CTA FINAL ── */
+.cta-final{
+  text-align:center;padding:120px 24px;position:relative;overflow:hidden
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(59,130,246,.1),transparent 70%);
+  pointer-events:none
+}
+.cta-final h2{font-family:'Syne',sans-serif;font-size:clamp(32px,5vw,58px);font-weight:800;letter-spacing:-2px;margin-bottom:16px;line-height:1.1}
+.cta-final p{font-size:17px;color:var(--mid);margin-bottom:40px;font-weight:300}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);padding:40px 24px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  max-width:1100px;margin:0 auto;font-size:13px;color:var(--dim)
+}
+.footer-logo{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:var(--text)}
+
+/* ── ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .feature-row,.feature-row.reverse{grid-template-columns:1fr;direction:ltr}
+  .plans-grid{grid-template-columns:1fr}
+  .app-content{grid-template-columns:1fr}
+  .app-sidebar{display:none}
+  .steps::before{display:none}
+  .steps{grid-template-columns:1fr;gap:32px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">✦</div>
+    ContentAI
+  </div>
+  <div class="nav-links">
+    <a href="#funcionalidades">Funcionalidades</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#planos">Planos</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="https://contentai-saas.vercel.app" class="nav-cta">Começar grátis →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="badge">
+    <span class="badge-dot"></span>
+    IA que aprende o DNA de cada cliente
+  </div>
+
+  <h1>
+    Marketing com IA<br/>
+    <span class="grad">personalizado</span><br/>
+    para cada marca
+  </h1>
+
+  <p class="hero-sub">
+    Crie o DNA de cada cliente. Gere conteúdo que <strong>realmente conhece a marca</strong> —
+    posts, reels, carrosseis e artes com o tom certo, sem briefing toda vez.
+  </p>
+
+  <div class="cta-group">
+    <a href="https://contentai-saas.vercel.app" class="btn-primary">
+      Testar 7 dias grátis
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#planos" class="btn-ghost">Ver planos</a>
+  </div>
+
+  <div class="hero-proof">
+    <div class="hero-proof-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      Sem cartão de crédito
+    </div>
+    <div class="hero-proof-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      Cancele quando quiser
+    </div>
+    <div class="hero-proof-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      Configurado em 5 minutos
+    </div>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<div class="app-preview reveal">
+  <div class="app-frame">
+    <div class="app-bar">
+      <div class="app-dot" style="background:#ef4444"></div>
+      <div class="app-dot" style="background:#f59e0b"></div>
+      <div class="app-dot" style="background:#10b981"></div>
+      <span style="margin-left:8px;font-size:12px;color:var(--dim)">ContentAI — Dashboard</span>
+    </div>
+    <div class="app-content">
+      <div class="app-sidebar">
+        <div style="font-size:11px;color:var(--dim);font-weight:700;letter-spacing:.5px;padding:4px 14px;margin-bottom:4px">CLIENTES</div>
+        <div class="app-nav-item active">🧬 Café Artesanal</div>
+        <div class="app-nav-item">🔵 Studio Fit</div>
+        <div class="app-nav-item">🟡 Advocacia Silva</div>
+        <div class="app-nav-item">⚪ Tech Soluções</div>
+        <div style="margin-top:auto">
+          <div class="app-nav-item" style="color:var(--accent)">+ Novo cliente</div>
+        </div>
+      </div>
+      <div class="app-main">
+        <div class="app-card">
+          <div class="app-card-header">
+            <span class="app-card-title">Posts desta semana</span>
+            <span class="app-tag tag-blue">Café Artesanal</span>
+          </div>
+          <div class="app-post-list">
+            <div class="app-post">
+              <div class="app-post-icon" style="background:rgba(59,130,246,.1)">🎬</div>
+              <span class="app-post-name">Reel: Processo de torra do café</span>
+              <span class="app-tag tag-green">Aprovado</span>
+            </div>
+            <div class="app-post">
+              <div class="app-post-icon" style="background:rgba(139,92,246,.1)">🖼️</div>
+              <span class="app-post-name">Arte: Novo blend especial</span>
+              <span class="app-tag tag-yellow">Revisão</span>
+            </div>
+            <div class="app-post">
+              <div class="app-post-icon" style="background:rgba(16,185,129,.1)">📱</div>
+              <span class="app-post-name">Story: Bastidores da cafeteria</span>
+              <span class="app-tag tag-blue">Produção</span>
+            </div>
+          </div>
+        </div>
+        <div class="app-metrics">
+          <div class="app-metric">
+            <div class="app-metric-val">12</div>
+            <div class="app-metric-label">Posts criados</div>
+          </div>
+          <div class="app-metric">
+            <div class="app-metric-val">4</div>
+            <div class="app-metric-label">Clientes ativos</div>
+          </div>
+          <div class="app-metric">
+            <div class="app-metric-val" style="color:#34d399">98%</div>
+            <div class="app-metric-label">Aprovação</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOR -->
+<section>
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">O problema</div>
+      <h2 class="section-title">Você passa mais tempo<br/>explicando do que criando</h2>
+      <p class="section-sub">Toda vez que gera conteúdo, precisa lembrar o tom, os valores, o público. Para cada cliente. Todo mês.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-icon">😩</div>
+        <div class="pain-title">Briefings repetitivos</div>
+        <div class="pain-desc">Você redigita as mesmas informações do cliente toda vez que pede algo para a IA — perdendo tempo que poderia usar criando.</div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🔀</div>
+        <div class="pain-title">Conteúdo genérico</div>
+        <div class="pain-desc">A IA gera textos que poderiam ser de qualquer marca — sem o tom, os valores e a personalidade únicos de cada cliente.</div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">📋</div>
+        <div class="pain-title">Aprovação no caos</div>
+        <div class="pain-desc">Posts espalhados no WhatsApp, e-mail, Drive. O cliente comenta num lugar, você corrige em outro. Tudo vira confusão.</div>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">⏱️</div>
+        <div class="pain-title">Escala travada</div>
+        <div class="pain-desc">Cada novo cliente aumenta exponencialmente o trabalho manual — chegou um momento em que não dá pra crescer mais.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="funcionalidades">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Funcionalidades</div>
+      <h2 class="section-title">Tudo que você precisa<br/>em um só lugar</h2>
+    </div>
+
+    <div class="features-wrap">
+
+      <!-- DNA -->
+      <div class="feature-row reveal">
+        <div>
+          <div class="feature-tag">DNA de Marca</div>
+          <h3 class="feature-title">A IA aprende cada cliente uma vez</h3>
+          <p class="feature-desc">Configure o DNA da marca — tom, valores, público, diferenciais — e a IA usa esse contexto em tudo que gerar para aquele cliente. Para sempre.</p>
+          <div class="feature-list">
+            <div class="feature-list-item">Templates por segmento: saúde, advocacia, varejo, tecnologia e mais</div>
+            <div class="feature-list-item">IA gera o DNA automaticamente a partir de uma conversa</div>
+            <div class="feature-list-item">Agente exclusivo por empresa — cada cliente tem o seu</div>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="dna-visual">
+            <div class="dna-field">
+              <div class="dna-label">Empresa</div>
+              <div class="dna-value">Café Artesanal — Blend & Cultura</div>
+            </div>
+            <div class="dna-field">
+              <div class="dna-label">Tom de voz</div>
+              <div class="dna-value">Caloroso, apaixonado por café, próximo do cliente</div>
+            </div>
+            <div class="dna-field">
+              <div class="dna-label">Público</div>
+              <div class="dna-value">Amantes de café especial, 25–45 anos, urbanos</div>
+            </div>
+            <div class="dna-field">
+              <div class="dna-label">Evitar</div>
+              <div class="dna-value">Linguagem corporativa, promoções agressivas</div>
+            </div>
+            <div class="dna-ai-badge">
+              ✦ DNA gerado por IA em 30 segundos
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KANBAN -->
+      <div class="feature-row reverse reveal">
+        <div>
+          <div class="feature-tag">Calendário + Kanban</div>
+          <h3 class="feature-title">Do briefing à aprovação sem sair da plataforma</h3>
+          <p class="feature-desc">Organize todos os posts no Kanban, agende no calendário e envie para aprovação do cliente com um link — sem WhatsApp, sem e-mail.</p>
+          <div class="feature-list">
+            <div class="feature-list-item">Kanban visual: Ideia → Produção → Aprovação → Publicado</div>
+            <div class="feature-list-item">Link de aprovação público para o cliente revisar e comentar</div>
+            <div class="feature-list-item">Notificação em tempo real quando o cliente aprovar</div>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="kanban-cols">
+            <div>
+              <div class="kanban-col-title">Ideia</div>
+              <div class="kanban-item"><div class="kanban-item-type">🎬 Reel</div><div class="kanban-item-name">Processo de torra</div></div>
+              <div class="kanban-item"><div class="kanban-item-type">🖼️ Arte</div><div class="kanban-item-name">Novo blend especial</div></div>
+            </div>
+            <div>
+              <div class="kanban-col-title">Produção</div>
+              <div class="kanban-item"><div class="kanban-item-type">📱 Story</div><div class="kanban-item-name">Bastidores</div></div>
+            </div>
+            <div>
+              <div class="kanban-col-title">Aprovado</div>
+              <div class="kanban-item" style="border-color:rgba(16,185,129,.3)"><div class="kanban-item-type">🎯 Carrossel</div><div class="kanban-item-name" style="color:#34d399">5 tipos de café ✓</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGENTE -->
+      <div class="feature-row reveal">
+        <div>
+          <div class="feature-tag">Agente de IA</div>
+          <h3 class="feature-title">Um agente de marketing dedicado por cliente</h3>
+          <p class="feature-desc">Converse com a IA como se fosse um especialista que conhece profundamente cada marca. Gere posts, refine textos, peça sugestões — tudo com contexto completo.</p>
+          <div class="feature-list">
+            <div class="feature-list-item">Histórico de conversa por empresa — contexto sempre presente</div>
+            <div class="feature-list-item">Gera conteúdo para Reels, Artes, Stories e Carrosseis</div>
+            <div class="feature-list-item">Salva posts diretamente no Kanban pelo chat</div>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="chat-msgs">
+            <div class="chat-msg user">Crie um reel sobre o processo de torra do nosso café especial</div>
+            <div class="chat-msg ai">
+              <strong>🎬 Reel: A Arte da Torra Perfeita</strong><br/><br/>
+              Cena 1: Close nos grãos verdes chegando...<br/>
+              Cena 2: O calor abraçando cada grão...<br/>
+              Legenda: "Cada torra é uma história de cuidado ☕"
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" class="how-bg">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-tag" style="justify-content:center">Como funciona</div>
+      <h2 class="section-title">Pronto em 4 passos</h2>
+      <p class="section-sub" style="margin:0 auto">Sem configuração complicada. Em menos de 10 minutos você já está gerando conteúdo.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-title">Crie sua conta</div>
+        <div class="step-desc">Acesse com e-mail ou Google. 7 dias grátis, sem cartão de crédito.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-title">Cadastre um cliente</div>
+        <div class="step-desc">Adicione nome, setor e logo. A IA sugere o DNA de marca automaticamente.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-title">Gere conteúdo</div>
+        <div class="step-desc">Converse com o agente e gere posts para Reels, Artes, Stories e Carrosseis.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div class="step-title">Aprove com o cliente</div>
+        <div class="step-desc">Envie um link de aprovação. O cliente revisa e você recebe notificação.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section>
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-tag" style="justify-content:center">Depoimentos</div>
+      <h2 class="section-title">Quem já usa ContentAI</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Antes eu ficava 2 horas montando briefing para a IA a cada post. Agora o DNA já está lá e <strong>gero em 5 minutos</strong> o mesmo conteúdo de qualidade."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(59,130,246,.1)">👩</div>
+          <div><div class="testi-name">Camila Rocha</div><div class="testi-role">Agência de Social Media · SP</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"O link de aprovação mudou meu relacionamento com os clientes. <strong>Zero WhatsApp</strong> sobre post, tudo centralizado e documentado."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(99,102,241,.1)">👨</div>
+          <div><div class="testi-name">Rafael Mendes</div><div class="testi-role">Freelancer de Marketing · RJ</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Gerencio <strong>12 clientes sozinha</strong> com o ContentAI. Antes com 5 eu já estava no limite. O Kanban é essencial no meu dia a dia."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(16,185,129,.1)">👩</div>
+          <div><div class="testi-name">Fernanda Lima</div><div class="testi-role">Gestora de Conteúdo · MG</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="planos" class="pricing-bg">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-tag" style="justify-content:center">Planos</div>
+      <h2 class="section-title">Simples, transparente, sem surpresas</h2>
+      <p class="section-sub" style="margin:0 auto">Todos os planos incluem 7 dias grátis. Cancele quando quiser.</p>
+    </div>
+
+    <div class="billing-toggle reveal">
+      <div class="toggle-wrap">
+        <div class="toggle-opt active" id="t-monthly" onclick="setBilling('monthly')">Mensal</div>
+        <div class="toggle-opt" id="t-yearly" onclick="setBilling('yearly')">Anual</div>
+      </div>
+      <span class="save-badge">Economize até 20% no anual</span>
+    </div>
+
+    <div class="plans-grid reveal">
+
+      <div class="plan-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price"><sup>R$</sup><span id="p-starter">97</span></div>
+          <div class="plan-period">/mês <span id="p-starter-sub"></span></div>
+        </div>
+        <div class="plan-desc">Para freelancers e gestores que estão começando a escalar.</div>
+        <div class="plan-features">
+          <div class="plan-feat">Até 3 clientes</div>
+          <div class="plan-feat">50 gerações de IA por mês</div>
+          <div class="plan-feat">DNA de marca por IA</div>
+          <div class="plan-feat">Kanban + Calendário</div>
+          <div class="plan-feat">Link de aprovação</div>
+        </div>
+        <a href="https://contentai-saas.vercel.app" class="plan-btn">Começar grátis</a>
+        <div class="plan-trial">7 dias grátis · sem cartão</div>
+      </div>
+
+      <div class="plan-card popular">
+        <div class="popular-badge">⚡ Mais popular</div>
+        <div class="plan-name" style="color:#60a5fa">Pro</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price" style="color:#60a5fa"><sup>R$</sup><span id="p-pro">197</span></div>
+          <div class="plan-period">/mês <span id="p-pro-sub"></span></div>
+        </div>
+        <div class="plan-desc">Para agências em crescimento que gerenciam múltiplos clientes.</div>
+        <div class="plan-features">
+          <div class="plan-feat">Até 15 clientes</div>
+          <div class="plan-feat">IA ilimitada</div>
+          <div class="plan-feat">Gerador de imagens com IA</div>
+          <div class="plan-feat">Tudo do Starter</div>
+        </div>
+        <a href="https://contentai-saas.vercel.app" class="plan-btn primary">Começar grátis</a>
+        <div class="plan-trial">7 dias grátis · sem cartão</div>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-name" style="color:#fbbf24">Agency</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price" style="color:#fbbf24"><sup>R$</sup><span id="p-agency">497</span></div>
+          <div class="plan-period">/mês <span id="p-agency-sub"></span></div>
+        </div>
+        <div class="plan-desc">Para agências consolidadas que precisam de escala total.</div>
+        <div class="plan-features">
+          <div class="plan-feat">Clientes ilimitados</div>
+          <div class="plan-feat">IA ilimitada</div>
+          <div class="plan-feat">Gerador de imagens</div>
+          <div class="plan-feat">White-label</div>
+          <div class="plan-feat">Suporte prioritário</div>
+          <div class="plan-feat">Sem cooldown</div>
+        </div>
+        <a href="https://contentai-saas.vercel.app" class="plan-btn">Começar grátis</a>
+        <div class="plan-trial">7 dias grátis · sem cartão</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-tag" style="justify-content:center">Dúvidas</div>
+      <h2 class="section-title">Perguntas frequentes</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Precisa de cartão de crédito para o trial?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Não. Você cria a conta e usa por 7 dias sem precisar cadastrar cartão. Só pedimos o cartão se você decidir continuar após o período grátis.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Posso cancelar quando quiser?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Sim, sem burocracia. Dentro do app você acessa o portal de gerenciamento da assinatura e cancela com um clique. Sem ligação, sem formulário.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          O que é o DNA de marca?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">É um perfil detalhado de cada cliente — tom de voz, público-alvo, valores, diferenciais, o que evitar. Você configura uma vez e a IA usa esse contexto em todos os conteúdos gerados para aquela empresa.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Como funciona o link de aprovação?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Você gera um link único para cada cliente. Ele abre uma página pública onde o cliente vê todos os posts, pode aprovar ou pedir ajustes com comentários. Você recebe notificação em tempo real quando ele responder.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Qual IA é usada na plataforma?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Usamos o Gemini 2.5 Flash do Google — um dos modelos mais avançados disponíveis, com excelente desempenho para criação de conteúdo em português.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Posso usar minha própria chave de IA?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Sim. Você pode configurar sua própria chave de API do Gemini nas configurações do app, se preferir usar sua cota pessoal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-glow"></div>
+  <div style="position:relative;z-index:1">
+    <h2>Pronto para escalar<br/>sua agência com IA?</h2>
+    <p>Comece grátis hoje. Sem cartão, sem complicação.</p>
+    <a href="https://contentai-saas.vercel.app" class="btn-primary" style="display:inline-flex;font-size:16px;padding:17px 40px">
+      Criar conta grátis
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--dim);display:flex;align-items:center;gap:6px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        7 dias grátis
+      </span>
+      <span style="font-size:13px;color:var(--dim);display:flex;align-items:center;gap:6px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Sem cartão de crédito
+      </span>
+      <span style="font-size:13px;color:var(--dim);display:flex;align-items:center;gap:6px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Cancele quando quiser
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="nav-logo-icon" style="width:28px;height:28px;font-size:13px">✦</div>
+    ContentAI
+  </div>
+  <div style="display:flex;gap:24px;flex-wrap:wrap">
+    <a href="#funcionalidades">Funcionalidades</a>
+    <a href="#planos">Planos</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://wa.me/5515998356756" style="color:var(--accent)">WhatsApp</a>
+  </div>
+  <div>© 2026 ContentAI · Todos os direitos reservados</div>
+</footer>
+
+<script>
+// ── Billing toggle ──
+const prices = {
+  monthly: { starter:97,  pro:197,  agency:497,  sub:'' },
+  yearly:  { starter:77,  pro:157,  agency:397,  sub:'(cobrado anualmente)' },
+}
+function setBilling(mode) {
+  const p = prices[mode]
+  document.getElementById('p-starter').textContent = p.starter
+  document.getElementById('p-pro').textContent     = p.pro
+  document.getElementById('p-agency').textContent  = p.agency
+  document.getElementById('p-starter-sub').textContent = p.sub
+  document.getElementById('p-pro-sub').textContent     = p.sub
+  document.getElementById('p-agency-sub').textContent  = p.sub
+  document.getElementById('t-monthly').classList.toggle('active', mode==='monthly')
+  document.getElementById('t-yearly').classList.toggle('active', mode==='yearly')
+}
+
+// ── FAQ ──
+function toggleFaq(el) {
+  const item = el.parentElement
+  const wasOpen = item.classList.contains('open')
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'))
+  if (!wasOpen) item.classList.add('open')
+}
+
+// ── Reveal on scroll ──
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})
+},{threshold:.12})
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
+</script>
+</body>
+</html>
