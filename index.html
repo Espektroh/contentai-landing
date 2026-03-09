@@ -213,6 +213,7 @@ section{position:relative;z-index:1}
 }
 .step-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
 .step-desc{font-size:13px;color:var(--mid);line-height:1.7}
+.step-text{display:flex;flex-direction:column;gap:4px}
 
 /* ── TESTIMONIALS ── */
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:52px}
@@ -316,14 +317,84 @@ footer{
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  nav{padding:0 20px}
+  /* NAV */
+  nav{padding:0 16px;height:60px}
   .nav-links{display:none}
-  .feature-row,.feature-row.reverse{grid-template-columns:1fr;direction:ltr}
-  .plans-grid{grid-template-columns:1fr}
-  .app-content{grid-template-columns:1fr}
+  .nav-cta{padding:8px 16px;font-size:12px}
+  .nav-logo{font-size:15px}
+  .nav-logo-icon{width:30px;height:30px;font-size:14px}
+
+  /* HERO */
+  .hero{padding:90px 20px 60px}
+  h1{font-size:clamp(34px,10vw,52px);letter-spacing:-1px}
+  .hero-sub{font-size:15px;margin-bottom:32px}
+  .cta-group{flex-direction:column;align-items:stretch;gap:10px}
+  .btn-primary,.btn-ghost{text-align:center;justify-content:center;padding:14px 24px}
+  .hero-proof{flex-direction:column;align-items:flex-start;gap:10px;padding:0 4px}
+  .hero-glow{width:340px;height:280px}
+
+  /* APP PREVIEW */
+  .app-preview{padding:0 16px 60px}
+  .app-content{grid-template-columns:1fr;gap:12px;min-height:auto;padding:16px}
   .app-sidebar{display:none}
+  .app-metrics{grid-template-columns:repeat(3,1fr);gap:8px}
+  .app-metric-val{font-size:18px}
+
+  /* SECTIONS */
+  .section-inner{padding:64px 20px}
+  .section-title{font-size:clamp(24px,7vw,36px);letter-spacing:-1px}
+  .section-sub{font-size:14px}
+
+  /* PAIN */
+  .pain-grid{grid-template-columns:1fr;gap:12px;margin-top:36px}
+  .pain-card{padding:20px}
+
+  /* FEATURES */
+  .features-wrap{gap:52px;margin-top:44px}
+  .feature-row,.feature-row.reverse{grid-template-columns:1fr;direction:ltr;gap:28px}
+  .feature-title{font-size:22px}
+  .feature-desc{font-size:14px;margin-bottom:16px}
+  .feature-visual{padding:22px;min-height:auto}
+
+  /* STEPS */
   .steps::before{display:none}
-  .steps{grid-template-columns:1fr;gap:32px}
+  .steps{grid-template-columns:1fr;gap:28px}
+  .step{text-align:left;padding:0;display:flex;align-items:flex-start;gap:16px}
+  .step-num{margin:0;flex-shrink:0;width:48px;height:48px;font-size:18px}
+
+  /* TESTIMONIALS */
+  .testi-grid{grid-template-columns:1fr;gap:12px;margin-top:36px}
+  .testi-card{padding:20px}
+
+  /* PRICING */
+  .plans-grid{grid-template-columns:1fr;gap:16px}
+  .billing-toggle{flex-direction:column;gap:10px;align-items:center}
+  .plan-card{padding:22px}
+  .plan-price{font-size:36px}
+
+  /* FAQ */
+  .faq-q{font-size:14px;padding:16px 18px}
+  .faq-a{font-size:13px}
+  .faq-item.open .faq-a{padding:0 18px 16px}
+
+  /* CTA FINAL */
+  .cta-final{padding:80px 20px}
+  .cta-final h2{font-size:clamp(26px,8vw,42px);letter-spacing:-1px}
+  .cta-final p{font-size:15px}
+  .cta-glow{width:300px;height:250px}
+
+  /* FOOTER */
+  footer{flex-direction:column;align-items:flex-start;gap:20px;padding:32px 20px}
+  footer > div:last-child{font-size:11px}
+}
+
+/* Telas muito pequenas */
+@media(max-width:390px){
+  h1{font-size:32px}
+  .app-metrics{grid-template-columns:repeat(3,1fr)}
+  .app-metric-val{font-size:16px}
+  .app-metric-label{font-size:9px}
+  .kanban-cols{grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
@@ -603,23 +674,23 @@ footer{
     <div class="steps">
       <div class="step reveal">
         <div class="step-num">1</div>
-        <div class="step-title">Crie sua conta</div>
-        <div class="step-desc">Acesse com e-mail ou Google. 7 dias grátis, sem cartão de crédito.</div>
+        <div class="step-text"><div class="step-title">Crie sua conta</div>
+        <div class="step-desc">Acesse com e-mail ou Google. 7 dias grátis, sem cartão de crédito.</div></div>
       </div>
       <div class="step reveal">
         <div class="step-num">2</div>
-        <div class="step-title">Cadastre um cliente</div>
-        <div class="step-desc">Adicione nome, setor e logo. A IA sugere o DNA de marca automaticamente.</div>
+        <div class="step-text"><div class="step-title">Cadastre um cliente</div>
+        <div class="step-desc">Adicione nome, setor e logo. A IA sugere o DNA de marca automaticamente.</div></div>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
-        <div class="step-title">Gere conteúdo</div>
-        <div class="step-desc">Converse com o agente e gere posts para Reels, Artes, Stories e Carrosseis.</div>
+        <div class="step-text"><div class="step-title">Gere conteúdo</div>
+        <div class="step-desc">Converse com o agente e gere posts para Reels, Artes, Stories e Carrosseis.</div></div>
       </div>
       <div class="step reveal">
         <div class="step-num">4</div>
-        <div class="step-title">Aprove com o cliente</div>
-        <div class="step-desc">Envie um link de aprovação. O cliente revisa e você recebe notificação.</div>
+        <div class="step-text"><div class="step-title">Aprove com o cliente</div>
+        <div class="step-desc">Envie um link de aprovação. O cliente revisa e você recebe notificação.</div></div>
       </div>
     </div>
   </div>
