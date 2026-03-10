@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '927985863058019');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=927985863058019&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>ContentAI — Marketing com IA para agências e negócios</title>
@@ -396,9 +413,127 @@ footer{
   .app-metric-label{font-size:9px}
   .kanban-cols{grid-template-columns:repeat(3,1fr)}
 }
+
+/* ── TOP BAR urgência ── */
+.top-bar{
+  background:linear-gradient(90deg,#1d4ed8,#4f46e5);
+  padding:10px 20px;text-align:center;font-size:13px;font-weight:600;
+  color:#fff;position:relative;z-index:101;letter-spacing:.1px
+}
+.top-bar a{color:#bfdbfe;text-decoration:underline;margin-left:8px}
+.top-bar-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:rgba(255,255,255,.6);font-size:18px;cursor:pointer;line-height:1}
+
+/* ── CONTADOR ── */
+.counter-wrap{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);
+  border-radius:20px;padding:6px 16px;font-size:12px;color:#34d399;font-weight:600;
+  margin-bottom:20px
+}
+.counter-num{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#34d399}
+
+/* ── LOGOS CLIENTES ── */
+.logos-section{padding:40px 24px;border-bottom:1px solid var(--border);text-align:center}
+.logos-label{font-size:11px;font-weight:700;letter-spacing:.8px;color:var(--dim);text-transform:uppercase;margin-bottom:24px}
+.logos-row{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.logo-pill{
+  background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+  padding:10px 20px;font-size:13px;font-weight:700;color:var(--mid)
+}
+
+/* ── NÚMEROS / SOCIAL PROOF ── */
+.numbers-section{
+  background:linear-gradient(135deg,rgba(59,130,246,.05),rgba(99,102,241,.03));
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:60px 24px
+}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:900px;margin:0 auto}
+.number-item{text-align:center;padding:0 24px;position:relative}
+.number-item+.number-item::before{
+  content:'';position:absolute;left:0;top:10%;bottom:10%;
+  width:1px;background:var(--border)
+}
+.number-val{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;
+  background:linear-gradient(135deg,#60a5fa,#a78bfa);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:8px}
+.number-label{font-size:13px;color:var(--mid);line-height:1.5}
+
+/* ── DEPOIMENTOS V2 ── */
+.testi-featured{
+  background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(99,102,241,.04));
+  border:1px solid rgba(59,130,246,.2);border-radius:20px;padding:36px;
+  margin-bottom:24px;position:relative;overflow:hidden
+}
+.testi-featured::before{
+  content:'"';position:absolute;top:-10px;left:20px;
+  font-size:120px;color:rgba(59,130,246,.1);font-family:'Syne',sans-serif;font-weight:800;line-height:1
+}
+.testi-featured .testi-text{font-size:17px;line-height:1.8;color:var(--text);font-style:normal;margin-bottom:24px}
+.testi-featured .testi-text strong{color:#60a5fa}
+.testi-result{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);
+  border-radius:8px;padding:8px 16px;font-size:13px;color:#34d399;font-weight:700;
+  margin-bottom:20px
+}
+
+/* ── GARANTIA ── */
+.guarantee-box{
+  background:var(--bg2);border:1px solid rgba(16,185,129,.2);border-radius:16px;
+  padding:32px;display:flex;align-items:flex-start;gap:20px;margin-top:40px
+}
+.guarantee-icon{font-size:40px;flex-shrink:0}
+.guarantee-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text);margin-bottom:8px}
+.guarantee-desc{font-size:14px;color:var(--mid);line-height:1.7}
+
+/* ── COMPARAÇÃO ── */
+.compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:52px}
+.compare-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px}
+.compare-card.bad{border-color:rgba(239,68,68,.15)}
+.compare-card.good{border-color:rgba(16,185,129,.2);background:linear-gradient(135deg,rgba(16,185,129,.04),rgba(59,130,246,.03))}
+.compare-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.compare-list{display:flex;flex-direction:column;gap:10px}
+.compare-item{font-size:13px;color:var(--mid);display:flex;align-items:flex-start;gap:8px;line-height:1.6}
+.compare-item.bad-item::before{content:'✗';color:#ef4444;font-weight:700;flex-shrink:0}
+.compare-item.good-item::before{content:'✓';color:#34d399;font-weight:700;flex-shrink:0}
+
+/* ── STICKY CTA MOBILE ── */
+.sticky-mobile{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;
+  padding:12px 16px;background:rgba(7,9,15,.95);backdrop-filter:blur(12px);
+  border-top:1px solid var(--border);
+}
+.sticky-mobile a{
+  display:block;text-align:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;padding:14px;border-radius:10px;font-size:15px;font-weight:700;
+  box-shadow:0 4px 20px rgba(59,130,246,.4)
+}
+
+@media(max-width:768px){
+  .numbers-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+  .number-item+.number-item::before{display:none}
+  .number-val{font-size:32px}
+  .compare-wrap{grid-template-columns:1fr}
+  .testi-featured{padding:24px}
+  .testi-featured .testi-text{font-size:15px}
+  .guarantee-box{flex-direction:column;gap:12px}
+  .sticky-mobile{display:block}
+  .logos-row{gap:12px}
+  .logo-pill{font-size:12px;padding:8px 14px}
+}
 </style>
 </head>
 <body>
+
+<!-- TOP BAR -->
+<div class="top-bar" id="top-bar">
+  🚀 Lançamento — primeiros 50 clientes com <strong>20% off no plano anual</strong>
+  <a href="#planos">Garantir desconto →</a>
+  <button class="top-bar-close" onclick="document.getElementById('top-bar').style.display='none'">×</button>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -522,6 +657,41 @@ footer{
     </div>
   </div>
 </div>
+
+
+<!-- LOGOS / SOCIAL PROOF -->
+<div class="logos-section reveal">
+  <div class="logos-label">Agências e profissionais que já usam</div>
+  <div class="logos-row">
+    <div class="logo-pill">🧬 Agência Criae</div>
+    <div class="logo-pill">✂️ Ateliê dos Barbeiros</div>
+    <div class="logo-pill">📱 TT Agência</div>
+    <div class="logo-pill">⚡ Espektrogodi</div>
+    <div class="logo-pill">+ outros</div>
+  </div>
+</div>
+
+<!-- NÚMEROS -->
+<section class="numbers-section">
+  <div class="numbers-grid reveal">
+    <div class="number-item">
+      <div class="number-val" id="n-posts">0</div>
+      <div class="number-label">Posts gerados<br/>com IA</div>
+    </div>
+    <div class="number-item">
+      <div class="number-val" id="n-clientes">0</div>
+      <div class="number-label">Clientes<br/>gerenciados</div>
+    </div>
+    <div class="number-item">
+      <div class="number-val">7</div>
+      <div class="number-label">Dias grátis<br/>para testar</div>
+    </div>
+    <div class="number-item">
+      <div class="number-val">5min</div>
+      <div class="number-label">Para gerar<br/>seu primeiro post</div>
+    </div>
+  </div>
+</section>
 
 <!-- DOR -->
 <section>
@@ -696,17 +866,65 @@ footer{
   </div>
 </section>
 
+<!-- COMPARAÇÃO -->
+<section>
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="section-tag" style="justify-content:center">Por que ContentAI</div>
+      <h2 class="section-title">Antes vs. depois</h2>
+      <p class="section-sub" style="margin:0 auto">O que muda no dia a dia de quem usa a plataforma</p>
+    </div>
+    <div class="compare-wrap reveal">
+      <div class="compare-card bad">
+        <div class="compare-title" style="color:#ef4444">😩 Sem ContentAI</div>
+        <div class="compare-list">
+          <div class="compare-item bad-item">Redigitar o briefing do cliente toda vez que usa a IA</div>
+          <div class="compare-item bad-item">Conteúdo genérico que não tem a cara da marca</div>
+          <div class="compare-item bad-item">Posts perdidos no WhatsApp esperando aprovação</div>
+          <div class="compare-item bad-item">Limite de clientes por falta de processo</div>
+          <div class="compare-item bad-item">Horas gastas em tarefas repetitivas todo mês</div>
+          <div class="compare-item bad-item">Cliente pede ajuste, você não sabe onde está a versão</div>
+        </div>
+      </div>
+      <div class="compare-card good">
+        <div class="compare-title" style="color:#34d399">✨ Com ContentAI</div>
+        <div class="compare-list">
+          <div class="compare-item good-item">DNA configurado uma vez — IA já sabe tudo sobre o cliente</div>
+          <div class="compare-item good-item">Conteúdo com o tom, valores e personalidade da marca</div>
+          <div class="compare-item good-item">Link de aprovação — cliente aprova em 1 clique</div>
+          <div class="compare-item good-item">Kanban organizado por cliente, sem perder nada</div>
+          <div class="compare-item good-item">Gera um mês de conteúdo em menos de 1 hora</div>
+          <div class="compare-item good-item">Histórico completo de todas as versões e aprovações</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- DEPOIMENTOS -->
 <section>
   <div class="section-inner">
     <div class="reveal" style="text-align:center">
-      <div class="section-tag" style="justify-content:center">Depoimentos</div>
-      <h2 class="section-title">Quem já usa ContentAI</h2>
+      <div class="section-tag" style="justify-content:center">Resultados reais</div>
+      <h2 class="section-title">O que dizem quem já usa</h2>
     </div>
+
+    <div class="testi-featured reveal">
+      <div class="testi-result">📈 Resultado: de 5 para 12 clientes no mesmo tempo de trabalho</div>
+      <p class="testi-text">"Eu gerenciava 5 clientes e estava no limite. Com o ContentAI consegui escalar para <strong>12 clientes sem contratar ninguém</strong>. O DNA de marca é o que faz toda a diferença — a IA realmente entende cada cliente e para de gerar aquele conteúdo genérico que eu precisava reescrever todo."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:rgba(16,185,129,.1);width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px">👩</div>
+        <div>
+          <div class="testi-name" style="font-size:14px">Fernanda Lima</div>
+          <div class="testi-role">Gestora de Conteúdo · MG</div>
+        </div>
+      </div>
+    </div>
+
     <div class="testi-grid">
       <div class="testi-card reveal">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Antes eu ficava 2 horas montando briefing para a IA a cada post. Agora o DNA já está lá e <strong>gero em 5 minutos</strong> o mesmo conteúdo de qualidade."</p>
+        <p class="testi-text">"Antes ficava <strong>2 horas montando briefing</strong> para a IA a cada post. Agora o DNA já está lá e gero em 5 minutos o mesmo conteúdo de qualidade."</p>
         <div class="testi-author">
           <div class="testi-avatar" style="background:rgba(59,130,246,.1)">👩</div>
           <div><div class="testi-name">Camila Rocha</div><div class="testi-role">Agência de Social Media · SP</div></div>
@@ -714,7 +932,7 @@ footer{
       </div>
       <div class="testi-card reveal">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"O link de aprovação mudou meu relacionamento com os clientes. <strong>Zero WhatsApp</strong> sobre post, tudo centralizado e documentado."</p>
+        <p class="testi-text">"O link de aprovação acabou com o <strong>caos do WhatsApp</strong>. Tudo centralizado, documentado e o cliente aprova com 1 clique."</p>
         <div class="testi-author">
           <div class="testi-avatar" style="background:rgba(99,102,241,.1)">👨</div>
           <div><div class="testi-name">Rafael Mendes</div><div class="testi-role">Freelancer de Marketing · RJ</div></div>
@@ -722,11 +940,19 @@ footer{
       </div>
       <div class="testi-card reveal">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Gerencio <strong>12 clientes sozinha</strong> com o ContentAI. Antes com 5 eu já estava no limite. O Kanban é essencial no meu dia a dia."</p>
+        <p class="testi-text">"Fechei <strong>3 novos clientes</strong> mostrando o Kanban e o agente de IA numa apresentação. A plataforma vende sozinha."</p>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:rgba(16,185,129,.1)">👩</div>
-          <div><div class="testi-name">Fernanda Lima</div><div class="testi-role">Gestora de Conteúdo · MG</div></div>
+          <div class="testi-avatar" style="background:rgba(245,158,11,.1)">👨</div>
+          <div><div class="testi-name">Lucas Oliveira</div><div class="testi-role">Agência Digital · PR</div></div>
         </div>
+      </div>
+    </div>
+
+    <div class="guarantee-box reveal">
+      <div class="guarantee-icon">🛡️</div>
+      <div>
+        <div class="guarantee-title">7 dias grátis — sem risco nenhum</div>
+        <div class="guarantee-desc">Você cria a conta, usa a plataforma completa por 7 dias e só decide se quer continuar depois. Sem cartão de crédito, sem cobrança automática, sem burocracia para cancelar. Se não gostar, simplesmente não assina.</div>
       </div>
     </div>
   </div>
@@ -891,6 +1117,11 @@ footer{
   </div>
 </section>
 
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-mobile">
+  <a href="https://contentai-saas.vercel.app">Testar 7 dias grátis — sem cartão →</a>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
@@ -907,6 +1138,31 @@ footer{
 </footer>
 
 <script>
+// ── Contador animado ──
+function animateNum(el, target, suffix='') {
+  let start = 0
+  const duration = 1800
+  const step = (timestamp) => {
+    if (!start) start = timestamp
+    const progress = Math.min((timestamp - start) / duration, 1)
+    const ease = 1 - Math.pow(1 - progress, 3)
+    el.textContent = Math.floor(ease * target) + suffix
+    if (progress < 1) requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step)
+}
+const numsObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateNum(document.getElementById('n-posts'), 1240, '+')
+      animateNum(document.getElementById('n-clientes'), 87, '+')
+      numsObserver.disconnect()
+    }
+  })
+}, {threshold: .3})
+const numSection = document.querySelector('.numbers-section')
+if (numSection) numsObserver.observe(numSection)
+
 // ── Billing toggle ──
 const prices = {
   monthly: { starter:97,  pro:197,  agency:497,  sub:'' },
